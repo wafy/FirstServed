@@ -1,10 +1,10 @@
-package com.event.firstserved;
+package com.event.reward;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FirstServedApplicationTests {
+class RewardApplicationTests {
 
     @Test
     void contextLoads() {

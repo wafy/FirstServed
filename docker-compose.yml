@@ -7,11 +7,11 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_DATABASE=first_served
+      - MYSQL_DATABASE=reward
       - MYSQL_ROOT_PASSWORD=1234
       - TZ=Asia/Seoul
     command: # 명령어 실행
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
     volumes:
-      - ~/Dev/docekr/mysql/first-served:/var/lib/mysql
+      - ~/Dev/docekr/mysql/reward:/var/lib/mysql

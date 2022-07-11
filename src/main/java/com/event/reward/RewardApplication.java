@@ -1,13 +1,13 @@
-package com.event.firstserved;
+package com.event.reward;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FirstServedApplication {
+public class RewardApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FirstServedApplication.class, args);
+        SpringApplication.run(RewardApplication.class, args);
     }
 
 }
