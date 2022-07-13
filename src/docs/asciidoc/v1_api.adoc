@@ -25,3 +25,22 @@ include::{path}/http-response.adoc[]
 === Response Description
 
 include::{path}/response-fields.adoc[]
+
+== 리워드 목록 조회
+:path: {snippets}/v1/admin/reward/query/search-page
+
+==== Request parameter
+
+include::{path}/request-parameters.adoc[]
+
+=== Request Sample
+
+include::{path}/http-request.adoc[]
+
+=== Response Sample
+
+include::{path}/http-response.adoc[]
+
+=== Response Description
+
+include::{path}/response-fields.adoc[]
