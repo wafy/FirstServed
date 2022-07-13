@@ -2,7 +2,7 @@ package com.event.reward.web.v1.admin;
 
 import com.event.reward.axiom.target.ForAdmin;
 import com.event.reward.core.Reward;
-import com.event.reward.core.query.RewardSearcher;
+import com.event.reward.core.query.RewardPageSearcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequestMapping("/v1/admin/reward")
 @RequiredArgsConstructor
 public class RewardSearchController implements ForAdmin {
-    private final RewardSearcher rewardSearcher;
+    private final RewardPageSearcher rewardPageSearcher;
 
     /**
      * 리워드 상세 조회해 리턴합니다.
@@ -29,7 +29,7 @@ public class RewardSearchController implements ForAdmin {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> find(@PathVariable Long rewardId) {
 
-        final Optional<Reward> reward = rewardSearcher.find(rewardId);
+        final Optional<Reward> reward = rewardPageSearcher.find(rewardId);
         if (reward.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -55,7 +55,7 @@ public class RewardSearchController implements ForAdmin {
                 request.getSize(),
                 sort);
 
-        Page<Reward> rewards = rewardSearcher.find(
+        Page<Reward> rewards = rewardPageSearcher.find(
                 request.getStartAt(),
                 request.getEndAt(),
                 pageable);
