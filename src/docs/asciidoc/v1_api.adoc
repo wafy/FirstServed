@@ -1,0 +1,27 @@
+= 선착순 리워드  Rest API Document - V1
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 5
+:sectlinks:
+:snippets: ../../../build/generated-snippets
+
+== 리워드 상세 조회
+:path: {snippets}/v1/admin/reward/query/search
+
+==== Path Parameter
+
+include::{path}/path-parameters.adoc[]
+
+=== Request Sample
+
+include::{path}/http-request.adoc[]
+
+=== Response Sample
+
+include::{path}/http-response.adoc[]
+
+=== Response Description
+
+include::{path}/response-fields.adoc[]
