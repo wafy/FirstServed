@@ -1,10 +1,10 @@
-package com.kurly.test.util;
-
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
+package com.event.reward.test.util;
 
 import org.springframework.boot.test.autoconfigure.restdocs.RestDocsMockMvcConfigurationCustomizer;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 
 /**
  * 레스트독 컨피그레이션.

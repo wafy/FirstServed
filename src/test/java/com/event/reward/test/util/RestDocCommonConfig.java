@@ -1,28 +1,28 @@
-package com.kurly.test.util;
+package com.event.reward.test.util;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcBuilderCustomizer;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @AutoConfigureRestDocs(
-    uriHost = "gateway.cloud.dev.kurly.services/eventboard",
-    uriScheme = "https",
-    uriPort = 443
+    uriHost = "localhost",
+    uriScheme = "http",
+    uriPort = 8080
 )
-@MvcTestConfig
 @Import({
     RestDocsConfiguration.class,
     RestDocCommonConfig.MockBeanConfiguration.class,
-    CmsUserMock.class
 })
 public @interface RestDocCommonConfig {
 
