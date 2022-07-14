@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
-@RestController("userRewardSearchController")
+@RestController("userRewardCreateController")
 @RequestMapping("/v1/user/reward")
 @RequiredArgsConstructor
-public class RewardSearchController implements ForUser {
+public class RewardCreateController implements ForUser {
     private final RewardCreator rewardCreator;
 
     /**

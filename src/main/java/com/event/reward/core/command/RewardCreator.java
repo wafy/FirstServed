@@ -4,6 +4,7 @@ import com.event.reward.core.Reward;
 import com.event.reward.core.query.RewardSearcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
@@ -40,6 +41,7 @@ public class RewardCreator {
         return rewardSaveRepository.save(new Reward(userNo, reward));
     }
 
+    @Transactional
     public Reward create(LocalDate created, long userNo) {
         long count = this.count(created);
         if (count >= MAXIMUM_COUNT) {

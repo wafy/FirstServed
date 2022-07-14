@@ -1,21 +1,17 @@
 package com.event.reward.core.query;
 
-import com.event.reward.core.Reward;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class RewardSearcher {
     private final RewardSearchRepository searchRepository;
 
+    @Transactional
     public long countByCreated(LocalDate created) {
         return searchRepository.countByCreated(created);
     }

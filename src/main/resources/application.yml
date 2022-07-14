@@ -17,5 +17,7 @@ spring:
       enabled: always
 logging:
   level:
+    root: debug
     org.springframework.web.client: DEBUG
     org.hibernate.type: trace
+
