@@ -6,7 +6,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcBuilderCus
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcBuilderCustomizer;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,7 +15,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @AutoConfigureRestDocs(
-    uriHost = "localhost",
+    uriHost = "localhost/reward",
     uriScheme = "http",
     uriPort = 8080
 )

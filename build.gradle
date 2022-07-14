@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'org.asciidoctor.jvm.convert' version "3.3.2"
 }
 
 group = 'com.event'
@@ -10,6 +11,18 @@ sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
+}
+
+configurations {
+    asciidoctorExtensions
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+springBoot {
+    buildInfo()
 }
 
 dependencies {
@@ -21,11 +34,41 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'com.h2database:h2'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.6.RELEASE'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.6.RELEASE'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+bootJar {
+    dependsOn asciidoctor
+    archiveFileName.set "${rootProject.name}.jar"
+    copy {
+        from "${asciidoctor.outputDir}"
+        into 'BOOT-INF/classes/static/docs'
+    }
+    finalizedBy 'copyDocument'
+}
+
+task copyDocument(type: Copy) {
+    dependsOn bootJar
+    from file("build/docs/asciidoc")
+    into file("src/main/resources/static/docs")
+}
+
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+    failFast = true
+
 }
