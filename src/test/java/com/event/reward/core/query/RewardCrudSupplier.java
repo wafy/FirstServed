@@ -20,6 +20,8 @@ public abstract class RewardCrudSupplier implements ForTestOnly {
     protected static final int givenUsers = 10;
     protected static final int givenDefaultReward = 100;
 
+    protected static final long givenUserNo = 999999L;
+
     @Autowired
     private RewardSaveRepository saveRepository;
 
@@ -40,7 +42,7 @@ public abstract class RewardCrudSupplier implements ForTestOnly {
     }
 
     protected RewardCreator getRewardCreator() {
-        return rewardCreator == null ? new RewardCreator(saveRepository, rewardSearcher) : rewardCreator;
+        return rewardCreator == null ? new RewardCreator(saveRepository, getRewardSearcher()) : rewardCreator;
     }
 
     protected Reward getRewardSave(long userNo, int reward) {
