@@ -4,18 +4,21 @@ import com.event.reward.core.Reward;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.LockModeType;
+import javax.persistence.QueryHint;
 import java.time.LocalDate;
 
 @Repository
 public interface RewardSearchRepository extends JpaRepository<Reward, Long> {
 
 
-    @Query(value = "select count(id) from reward_history where date(created) = :created", nativeQuery = true)
-    long countByCreated(@Param("created") LocalDate created);
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query(value = "select count(r) from Reward r where function('date_format', r.created , '%Y-%m-%d') = :created")
+    long countByCreated(@Param("created") String created);
 
     @Query(value = "select count(id) from reward_history where date(created)= :created and user_no = :userNo",
             nativeQuery = true)

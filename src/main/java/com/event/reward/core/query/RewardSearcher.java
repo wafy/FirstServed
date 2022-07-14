@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor
@@ -13,7 +14,7 @@ public class RewardSearcher {
 
     @Transactional
     public long countByCreated(LocalDate created) {
-        return searchRepository.countByCreated(created);
+        return searchRepository.countByCreated(created.toString());
     }
 
     public long countByTodayUserNo(LocalDate created, long userNo) {

@@ -2,9 +2,6 @@ package com.event.reward.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.OptimisticLockType;
-import org.hibernate.annotations.OptimisticLocking;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,8 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "reward_history")
-@OptimisticLocking(type = OptimisticLockType.ALL)
-@DynamicUpdate
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Reward {
 
     @Id

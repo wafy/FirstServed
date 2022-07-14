@@ -3,6 +3,7 @@ package com.event.reward.core.command;
 import com.event.reward.core.Reward;
 import com.event.reward.core.query.RewardSearcher;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RewardCreator {
 
     private final RewardSaveRepository rewardSaveRepository;
@@ -37,20 +39,22 @@ public class RewardCreator {
         return rewardSearcher.countByTodayUserNo(created, userNo);
     }
 
+    @Transactional
     public Reward save(long userNo, int reward) {
         return rewardSaveRepository.save(new Reward(userNo, reward));
     }
 
-    @Transactional
     public Reward create(LocalDate created, long userNo) {
         long count = this.count(created);
         if (count >= MAXIMUM_COUNT) {
+            log.debug("일일 한정 최대 보상수 10명을 초과");
             throw new IllegalArgumentException("일일 한정 최대 보상수 10명을 초과하였습니다.\n" +
                     "내일 다시 도전해주세요.");
         }
 
         long countByUserNo = this.countByUserNo(created, userNo);
         if (countByUserNo >= TODAY_COUNT) {
+            log.debug(String.format("하루에 한번 보상을 받을 수 있습니다. 요청일 %s 요청자 아이디 %d", created, userNo));
             throw new IllegalArgumentException("하루에 한번 보상을 받을 수 있습니다.\n" +
                     "내일 다시 도전해주세요.");
         }
