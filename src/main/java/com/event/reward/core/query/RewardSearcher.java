@@ -20,10 +20,6 @@ public class RewardSearcher {
         return searchRepository.countByTodayUserNo(created, userNo);
     }
 
-    public long countByAllUserNo(long userNo) {
-        return searchRepository.countByAllUserNo(userNo);
-    }
-
     public long findThreeDay(long userNo) {
         return searchRepository.findThreeDay(userNo);
     }

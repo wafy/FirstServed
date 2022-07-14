@@ -1,5 +1,6 @@
 package com.event.reward.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OptimisticLockType;
@@ -31,6 +32,7 @@ public class Reward {
     private LocalDateTime created;
 
     @Version
+    @JsonIgnore
     private Long version;
 
     public Reward(long userNo, int reward) {
@@ -39,6 +41,11 @@ public class Reward {
         this.created = LocalDateTime.now();
     }
 
+    public Reward(long userNo, int reward, LocalDateTime created) {
+        this.userNo = userNo;
+        this.reward = reward;
+        this.created = created;
+    }
 
     public Reward() {}
 }
