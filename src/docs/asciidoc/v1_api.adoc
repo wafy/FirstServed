@@ -5,7 +5,7 @@
 :toc: left
 :toclevels: 5
 :sectlinks:
-:snippets: ../../../build/generated-snippets
+:snippets: build/generated-snippets
 
 == 리워드 상세 조회
 :path: {snippets}/v1/admin/reward/query/search
