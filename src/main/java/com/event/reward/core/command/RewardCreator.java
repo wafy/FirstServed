@@ -54,7 +54,7 @@ public class RewardCreator {
 
         long countByUserNo = this.countByUserNo(created, userNo);
         if (countByUserNo >= TODAY_COUNT) {
-            log.debug(String.format("하루에 한번 보상을 받을 수 있습니다. 요청일 %s 요청자 아이디 %d", created, userNo));
+            log.debug(String.format("하루에 한번 보상을 받을 수 있습니다. 요청일: {%s} 요청자 아이디 : {%d}", created, userNo));
             throw new IllegalArgumentException("하루에 한번 보상을 받을 수 있습니다.\n" +
                     "내일 다시 도전해주세요.");
         }
